@@ -1,3 +1,4 @@
+package com.project3.Project_3_Group_81;
 /**
  * This enum class defines the possible values for a student's major
  * @author Bhavya Patel

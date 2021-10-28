@@ -1,3 +1,4 @@
+package com.project3.Project_3_Group_81;
 /**
  * This class performs actions like add, remove, printing, setting study abroad status, and calculating tuition & financial aid
  * on the roster.

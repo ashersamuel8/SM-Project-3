@@ -1,3 +1,4 @@
+package com.project3.Project_3_Group_81;
 /**
  * This class defines the properties specific to resident students, it is a child of the Student class.
  * @author Bhavya Patel

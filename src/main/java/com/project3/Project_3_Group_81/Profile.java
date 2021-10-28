@@ -1,3 +1,4 @@
+package com.project3.Project_3_Group_81;
 /**
  * This class defines a profile based on name and major, and it is used to uniquely identify students.
  * @author Bhavya Patel

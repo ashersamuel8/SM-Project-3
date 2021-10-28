@@ -1,3 +1,4 @@
+package com.project3.Project_3_Group_81;
 /**
  * This class defines the properties that are specific to nonresident students, it is a child of the Student class.
  * @author Bhavya Patel
