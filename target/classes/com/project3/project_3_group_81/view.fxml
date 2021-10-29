@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -111,20 +112,24 @@
                         </HBox>
                         <HBox prefHeight="45.0" prefWidth="771.0">
                            <children>
-                              <AnchorPane prefHeight="45.0" prefWidth="375.0">
-                                 <children>
-                                    <Label layoutX="24.0" layoutY="14.0" text="Tri-State:" />
-                                    <RadioButton layoutX="96.0" layoutY="14.0" mnemonicParsing="false" text="New York" />
-                                    <RadioButton layoutX="210.0" layoutY="14.0" mnemonicParsing="false" text="Connecticut" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="45.0" prefWidth="397.0">
-                                 <children>
-                                    <Label layoutX="26.0" layoutY="14.0" text="Study Abroad:" />
-                                    <RadioButton layoutX="129.0" layoutY="14.0" mnemonicParsing="false" text="Yes" />
-                                    <RadioButton layoutX="192.0" layoutY="14.0" mnemonicParsing="false" text="No" />
-                                 </children>
-                              </AnchorPane>
+                              <SplitPane dividerPositions="0.41807542262678804" prefHeight="45.0" prefWidth="773.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="43.0" prefWidth="321.0">
+                                       <children>
+                                          <Label layoutX="20.0" layoutY="13.0" text="Tri-State: " />
+                                          <RadioButton layoutX="86.0" layoutY="13.0" mnemonicParsing="false" text="New York" />
+                                          <RadioButton layoutX="180.0" layoutY="13.0" mnemonicParsing="false" text="Connecticut " />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <Label layoutX="26.0" layoutY="13.0" text="Study Abroad Status:" />
+                                          <RadioButton layoutX="176.0" layoutY="13.0" mnemonicParsing="false" text="True" />
+                                          <RadioButton layoutX="260.0" layoutY="13.0" mnemonicParsing="false" text="False" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
                            </children>
                         </HBox>
                         <HBox prefHeight="47.0" prefWidth="707.0">
