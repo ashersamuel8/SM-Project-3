@@ -22,27 +22,27 @@
                         <HBox prefHeight="39.0" prefWidth="833.0">
                            <children>
                               <Label text="Pick an action to perform:" />
-                              <RadioButton fx:id="addStudent" mnemonicParsing="false" onAction="#addStudent" text="Add Student">
+                              <RadioButton fx:id="addStudentButton" mnemonicParsing="false" onAction="#onClickAddStudent" text="Add Student">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="removeStudent" mnemonicParsing="false" onAction="#removeStudent" text="Remove Student">
+                              <RadioButton fx:id="removeStudentButton" mnemonicParsing="false" onAction="#onClickRemoveStudent" text="Remove Student">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="setStudyAbroad" mnemonicParsing="false" onAction="#setStudyAbroad" text="Set Study Abroad">
+                              <RadioButton fx:id="setStudyAbroadButton" mnemonicParsing="false" onAction="#onClickSetStudyAbroad" text="Set Study Abroad">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="setFinancialAid" mnemonicParsing="false" onAction="#setFinancialAid" text="Set Financial Aid">
+                              <RadioButton fx:id="setFinancialAidButton" mnemonicParsing="false" onAction="#onClickFinancialAid" text="Set Financial Aid">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="payTuition" mnemonicParsing="false" onAction="#payTuition" prefHeight="18.0" prefWidth="126.0" text="Pay Tuition">
+                              <RadioButton fx:id="payTuitionButton" mnemonicParsing="false" onAction="#onClickPayTuition" prefHeight="18.0" prefWidth="126.0" text="Pay Tuition">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
@@ -54,7 +54,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="833.0">
                            <children>
-                              <RadioButton fx:id="calculateStudentTuition" mnemonicParsing="false" onAction="#calculateStudentTuition" prefHeight="18.0" prefWidth="535.0" text="Calculate Student Tuition">
+                              <RadioButton fx:id="calculateStudentTuitionButton" mnemonicParsing="false" onAction="#onClickCalculateStudentTuition" prefHeight="18.0" prefWidth="535.0" text="Calculate Student Tuition">
                                  <padding>
                                     <Insets left="158.0" />
                                  </padding>
@@ -119,15 +119,15 @@
                               <Insets left="20.0" />
                            </padding>
                         </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="707.0">
+                        <HBox fx:id="studentTypeHbox" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="707.0">
                            <children>
                               <Label contentDisplay="CENTER" prefHeight="26.0" prefWidth="97.0" text="Student Type:  *" textAlignment="CENTER" />
-                              <RadioButton fx:id="resident" mnemonicParsing="false" text="Resident">
+                              <RadioButton fx:id="residentButton" mnemonicParsing="false" onAction="#onClickResident" text="Resident">
                                  <padding>
                                     <Insets left="29.0" top="5.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="nonResident" mnemonicParsing="false" text="Non-Resident">
+                              <RadioButton fx:id="nonResidentButton" mnemonicParsing="false" onAction="#onClickNonResident" text="Non-Resident">
                                  <padding>
                                     <Insets left="22.0" top="5.0" />
                                  </padding>
@@ -140,15 +140,15 @@
                               <Insets left="20.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="38.0" prefWidth="774.0">
+                        <HBox fx:id="nonResidentHBox" prefHeight="38.0" prefWidth="774.0">
                            <children>
                               <Label text="Non-Resident Type:" />
-                              <RadioButton fx:id="triState" mnemonicParsing="false" text="Tri-State">
+                              <RadioButton fx:id="triStateButton" mnemonicParsing="false" onAction="#onClickTriState" text="Tri-State">
                                  <padding>
                                     <Insets left="16.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="international" mnemonicParsing="false" text="International">
+                              <RadioButton fx:id="internationalButton" mnemonicParsing="false" onAction="#onClickInternation" text="International">
                                  <padding>
                                     <Insets left="22.0" />
                                  </padding>
@@ -160,20 +160,20 @@
                         </HBox>
                         <HBox prefHeight="45.0" prefWidth="771.0">
                            <children>
-                              <AnchorPane prefHeight="45.0" prefWidth="375.0">
+                              <AnchorPane fx:id="triStatePane" prefHeight="45.0" prefWidth="375.0">
                                  <children>
                                     <Label layoutX="20.0" layoutY="14.0" text="Tri-State:" />
-                                    <RadioButton fx:id="newYork" layoutX="96.0" layoutY="14.0" mnemonicParsing="false" text="New York">
+                                    <RadioButton fx:id="newYorkButton" layoutX="96.0" layoutY="14.0" mnemonicParsing="false" text="New York">
                                        <padding>
                                           <Insets left="50.0" />
                                        </padding></RadioButton>
-                                    <RadioButton fx:id="connecticut" layoutX="210.0" layoutY="14.0" mnemonicParsing="false" text="Connecticut">
+                                    <RadioButton fx:id="connecticutButton" layoutX="210.0" layoutY="14.0" mnemonicParsing="false" text="Connecticut">
                                        <padding>
                                           <Insets left="30.0" />
                                        </padding></RadioButton>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="45.0" prefWidth="397.0">
+                              <AnchorPane fx:id="studyAbroadPane" prefHeight="45.0" prefWidth="458.0">
                                  <children>
                                     <Label layoutX="26.0" layoutY="14.0" text="Study Abroad:" />
                                     <RadioButton fx:id="studyAbroadYes" layoutX="129.0" layoutY="14.0" mnemonicParsing="false" text="Yes" />
@@ -194,8 +194,6 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <AnchorPane prefHeight="37.0" prefWidth="109.0" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                            </children>
                            <padding>
                               <Insets left="20.0" top="10.0" />
@@ -203,7 +201,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Button fx:id="actionButton" layoutX="389.0" layoutY="360.0" mnemonicParsing="false" text="Add Student">
+                  <Button fx:id="actionButton" layoutX="390.0" layoutY="360.0" mnemonicParsing="false" text="Add Student">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>

@@ -3,6 +3,8 @@ package com.project3.Project_3_Group_81;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 public class Controller {
 
@@ -12,23 +14,27 @@ public class Controller {
     @FXML RadioButton majorBA;
     @FXML RadioButton majorIT;
     @FXML RadioButton majorME;
-    @FXML RadioButton addStudent;
-    @FXML RadioButton removeStudent;
-    @FXML RadioButton setStudyAbroad;
-    @FXML RadioButton payTuition;
-    @FXML RadioButton calculateStudentTuition;
-    @FXML RadioButton setFinancialAid;
-    @FXML RadioButton resident;
-    @FXML RadioButton nonResident;
-    @FXML RadioButton triState;
-    @FXML RadioButton international;
-    @FXML RadioButton newYork;
-    @FXML RadioButton connecticut;
+    @FXML RadioButton addStudentButton;
+    @FXML RadioButton removeStudentButton;
+    @FXML RadioButton setStudyAbroadButton;
+    @FXML RadioButton payTuitionButton;
+    @FXML RadioButton calculateStudentTuitionButton;
+    @FXML RadioButton setFinancialAidButton;
+    @FXML RadioButton residentButton;
+    @FXML RadioButton nonResidentButton;
+    @FXML RadioButton triStateButton;
+    @FXML RadioButton internationalButton;
+    @FXML RadioButton newYorkButton;
+    @FXML RadioButton connecticutButton;
     @FXML Label actionInputLabel;
     @FXML TextField actionInput;
     @FXML RadioButton studyAbroadYes;
     @FXML RadioButton studyAbroadNo;
     @FXML Button actionButton;
+    @FXML HBox nonResidentHBox;
+    @FXML AnchorPane triStatePane;
+    @FXML AnchorPane studyAbroadPane;
+    @FXML HBox studentTypeHbox;
 
 
 //    @FXML
@@ -48,64 +54,152 @@ public class Controller {
         majorME.setToggleGroup(majorToggleGroup);
 
         ToggleGroup actionToggleGroup = new ToggleGroup();
-        addStudent.setToggleGroup(actionToggleGroup);
-        removeStudent.setToggleGroup(actionToggleGroup);
-        setStudyAbroad.setToggleGroup(actionToggleGroup);
-        payTuition.setToggleGroup(actionToggleGroup);
-        calculateStudentTuition.setToggleGroup(actionToggleGroup);
-        setFinancialAid.setToggleGroup(actionToggleGroup);
+        addStudentButton.setToggleGroup(actionToggleGroup);
+        removeStudentButton.setToggleGroup(actionToggleGroup);
+        setStudyAbroadButton.setToggleGroup(actionToggleGroup);
+        payTuitionButton.setToggleGroup(actionToggleGroup);
+        calculateStudentTuitionButton.setToggleGroup(actionToggleGroup);
+        setFinancialAidButton.setToggleGroup(actionToggleGroup);
 
         ToggleGroup studentType = new ToggleGroup();
-        resident.setToggleGroup(studentType);
-        nonResident.setToggleGroup(studentType);
+        residentButton.setToggleGroup(studentType);
+        nonResidentButton.setToggleGroup(studentType);
 
         ToggleGroup nonResidentType = new ToggleGroup();
-        triState.setToggleGroup(nonResidentType);
-        international.setToggleGroup(nonResidentType);
+        triStateButton.setToggleGroup(nonResidentType);
+        internationalButton.setToggleGroup(nonResidentType);
 
         ToggleGroup triStateToggleGroup = new ToggleGroup();
-        newYork.setToggleGroup(triStateToggleGroup);
-        connecticut.setToggleGroup(triStateToggleGroup);
+        newYorkButton.setToggleGroup(triStateToggleGroup);
+        connecticutButton.setToggleGroup(triStateToggleGroup);
 
         ToggleGroup studyAbroadToggleGroup = new ToggleGroup();
         studyAbroadYes.setToggleGroup(studyAbroadToggleGroup);
         studyAbroadNo.setToggleGroup(studyAbroadToggleGroup);
 
-    }
-
-    @FXML
-    private void addStudent(){
+        addStudentButton.setSelected(true);
+        onClickAddStudent();
 
     }
 
     @FXML
-    private void removeStudent(){
+    private void onClickAddStudent(){
+
+        studentTypeHbox.setDisable(false);
+        majorCS.setSelected(false);
+        majorIT.setSelected(false);
+        majorBA.setSelected(false);
+        majorEE.setSelected(false);
+        majorME.setSelected(false);
+        nonResidentHBox.setDisable(true);
+        triStatePane.setDisable(true);
+        studyAbroadPane.setDisable(true);
+        studyAbroadNo.setSelected(false);
+        studyAbroadYes.setSelected(false);
+        newYorkButton.setSelected(false);
+        connecticutButton.setSelected(false);
+        internationalButton.setSelected(false);
+        residentButton.setSelected(false);
+        nonResidentButton.setSelected(false);
+        triStateButton.setSelected(false);
+        actionInputLabel.setDisable(false);
+        actionInput.setDisable(false);
+        actionInputLabel.setText("Number of credits:  *");
+        actionButton.setText("Add Student");
+        actionInput.setPromptText("Enter Number of Credits");
+
+    }
+
+    @FXML
+    private void onClickNonResident(){
+        nonResidentHBox.setDisable(false);
+    }
+
+    @FXML
+    private void onClickTriState(){
+        triStatePane.setDisable(false);
+        studyAbroadPane.setDisable(true);
+        studyAbroadNo.setSelected(false);
+        studyAbroadYes.setSelected(false);
+    }
+
+    @FXML
+    private void onClickInternation(){
+        studyAbroadPane.setDisable(false);
+        triStatePane.setDisable(true);
+        newYorkButton.setSelected(false);
+        connecticutButton.setSelected(false);
+    }
+
+    @FXML
+    private void onClickRemoveStudent(){
+        onClickAddStudent();
+        studentTypeHbox.setDisable(true);
+        actionInputLabel.setDisable(true);
+        actionInput.setDisable(true);
+        actionButton.setText("Remove Student");
 
 
     }
 
     @FXML
-    private void setStudyAbroad(){
+    private void onClickSetStudyAbroad(){
+        nonResidentButton.setSelected(true);
+        internationalButton.setSelected(true);
+        nonResidentHBox.setDisable(true);
+        studentTypeHbox.setDisable(true);
+        triStatePane.setDisable(true);
+        studyAbroadPane.setDisable(false);
+        actionInputLabel.setDisable(true);
+        actionInput.setDisable(true);
+        actionButton.setText("Set Study Abroad Status");
+    }
 
+    @FXML
+    private void onClickResident(){
+        studentTypeHbox.setDisable(false);
+        nonResidentHBox.setDisable(true);
+        triStatePane.setDisable(true);
+        studyAbroadPane.setDisable(true);
+        studyAbroadNo.setSelected(false);
+        studyAbroadYes.setSelected(false);
+        newYorkButton.setSelected(false);
+        connecticutButton.setSelected(false);
+        internationalButton.setSelected(false);
+        nonResidentButton.setSelected(false);
+        triStateButton.setSelected(false);
+        actionInputLabel.setDisable(false);
+        actionInput.setDisable(false);
+        actionInputLabel.setText("Number of credits:  *");
+    }
+
+    @FXML
+    private void onClickFinancialAid(){
+        onClickAddStudent();
+        studentTypeHbox.setDisable(true);
+        actionInputLabel.setText("Enter Financial Aid Amount");
+        actionInput.setPromptText("$0.00");
+        actionButton.setText("Update Financial Aid");
 
     }
 
     @FXML
-    private void setFinancialAid(){
-
+    private void onClickPayTuition(){
+        onClickAddStudent();
+        studentTypeHbox.setDisable(true);
+        actionInputLabel.setText("Enter Payment");
+        actionInput.setPromptText("$0.00");
+        actionButton.setText("Pay Bill");
     }
 
     @FXML
-    private void calculateStudentTuition(){
+    private void onClickCalculateStudentTuition(){
 
+        onClickAddStudent();
+        studentTypeHbox.setDisable(true);
+        actionInputLabel.setDisable(true);
+        actionInput.setDisable(true);
+        actionButton.setText("Calculate Tuition");
 
     }
-
-    @FXML
-    private void payTuition(){
-
-
-    }
-
-
 }
