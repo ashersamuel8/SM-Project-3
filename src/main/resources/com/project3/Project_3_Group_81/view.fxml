@@ -242,7 +242,13 @@
       </Tab>
       <Tab text="Print Roster">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="414.0" prefWidth="774.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="414.0" prefWidth="774.0">
+               <children>
+                  <Button layoutX="67.0" layoutY="38.0" mnemonicParsing="false" text="Print Roster" />
+                  <Button layoutX="306.0" layoutY="38.0" mnemonicParsing="false" text="Print Roster By Payment Date" />
+                  <Button layoutX="588.0" layoutY="38.0" mnemonicParsing="false" text="Print Roster by Student Name" />
+               </children>
+            </AnchorPane>
         </content>
       </Tab>
   </tabs>
