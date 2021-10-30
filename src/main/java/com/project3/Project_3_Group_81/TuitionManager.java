@@ -10,11 +10,11 @@ import java.util.NoSuchElementException;
  * @author Samuel Asher Kappala
  */
 public class TuitionManager {
-	
-	private Scanner inputObj;				
-	private String inputString;				
-	private StringTokenizer input;			
-	String command;							
+
+	private Scanner inputObj;
+	private String inputString;
+	private StringTokenizer input;
+	String command;
 	public static Roster roster;
 
 	
@@ -431,8 +431,7 @@ public class TuitionManager {
 				return;
 			
 			}
-			
-			if(fees == 0) System.out.println("Invalid amount");
+
 		
 			switch(roster.payTuition(name, major, fees, paymentDate)) {
 			

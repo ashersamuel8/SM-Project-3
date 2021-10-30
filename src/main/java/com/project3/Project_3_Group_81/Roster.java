@@ -1,4 +1,7 @@
 package com.project3.Project_3_Group_81;
+
+import java.util.ResourceBundle;
+
 /**
  * This class performs actions like add, remove, printing, setting study abroad status, and calculating tuition & financial aid
  * on the roster.
@@ -82,11 +85,9 @@ public class Roster {
 	 * @return true is student is removed, false if student doesnt exist/not removed
 	 */
 	public boolean remove(Student student) { 
-		
 
 		int exists = find(student);
-		
-	
+
 		if (exists != -1) {
 			
 				for (int i = exists + 1; i <= rosterList.length; i++ ) {
@@ -107,21 +108,21 @@ public class Roster {
 	public void print() {	
 		
 		if (rosterList[0] == null ) {
-			System.out.println("Student roster is empty!");
+			Controller.printString = Controller.printString + "Roster is empty.\n";
 			return;
 		}
 		
-		System.out.println("* List of students in the roster **");
+		Controller.printString = Controller.printString.concat("* List of students in the roster **\n");
 		
 		for(int i = 0; i < rosterList.length; i++) {
 			
 			if (rosterList[i] == null) break;
 			
-			System.out.println(rosterList[i].toString());	
+			Controller.printString = Controller.printString.concat(rosterList[i].toString() + "\n");
 			
 		}	
 		
-		System.out.println("* End of roster **");
+		Controller.printString = Controller.printString.concat("* End of roster **\n");
 		return;
 		
 	}
@@ -132,7 +133,7 @@ public class Roster {
 	public void printByStudentName() {
 		
 		if (rosterList[0] == null ) {
-			System.out.println("Student roster is empty!");
+			Controller.printString = Controller.printString + "Roster is empty.\n";
 			return;
 		}
 		
@@ -153,19 +154,19 @@ public class Roster {
 		       }
 		    }
 		}
-		
-		System.out.println("* List of students ordered by name **");
+
+		Controller.printString = Controller.printString.concat("* List of students ordered by student name **\n");
 		
 		
 		for (int i = 0; i < rosterList.length; i++) {
 			
 			if (rosterList[i] == null) break;
+
+			Controller.printString = Controller.printString.concat(rosterList[i].toString() + "\n");
 			
-			System.out.println(rosterList[i].toString());
-			
-		}	
-		
-		System.out.println("* End of roster **");
+		}
+
+		Controller.printString = Controller.printString.concat("* End of roster **\n");
 		return;
 		
 	}
@@ -177,11 +178,11 @@ public class Roster {
 	public void printByPaymentDate() {
 		
 		if (rosterList[0] == null ) {
-			System.out.println("Student roster is empty!");
+			Controller.printString = Controller.printString + "Roster is empty.\n";
 			return;
 		}
-		
-		System.out.println("* List of students ordered by payment date **");
+
+		Controller.printString = Controller.printString.concat("* List of students ordered by payment date **\n");
 		
 		//Creating a temporary array list to store data of students who made at least one payment
 		Student[] tempRosterList = new Student[rosterList.length];
@@ -225,10 +226,10 @@ public class Roster {
 		for (int i = 0; i < tempRosterList.length; i++) {
 			
 			if (tempRosterList[i] == null) break;
-			System.out.println(tempRosterList[i].toString());
+			Controller.printString = Controller.printString.concat(tempRosterList[i].toString() + "\n");
 		}
-		
-		System.out.println("* End of roster **");
+
+		Controller.printString = Controller.printString.concat("* End of roster **\n");
 		return;
 		
 	}
@@ -245,6 +246,17 @@ public class Roster {
 			rosterList[i].tuitionDue();
 			
 		}
+	}
+
+	public boolean calculateStudentTuition(Student student){
+		int exists = find(student);
+
+		if (exists != -1) {
+			rosterList[exists].tuitionDue();
+			return true;
+		}
+		return false;
+
 	}
 	
 	/**
@@ -348,9 +360,7 @@ public class Roster {
 						
 						return 2;
 					}
-					
 					return 1;
-					
 				}
 				
 			}

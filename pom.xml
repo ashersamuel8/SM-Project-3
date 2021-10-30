@@ -113,7 +113,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.project3.project_3_group_81/com.project3.Project_3_Group_81.RunProject3
+                                com.project3.project_3_group_81/com.project3.Project_3_Group_81.Main
                             </mainClass>
                         </configuration>
                     </execution>

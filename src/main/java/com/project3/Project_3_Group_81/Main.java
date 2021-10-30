@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RunProject3 extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RunProject3.class.getResource("view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Roster");
         stage.setScene(scene);
