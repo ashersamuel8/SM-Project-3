@@ -1,13 +1,19 @@
 package com.project3.Project_3_Group_81;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import java.util.NoSuchElementException;
 
-public class Controller {
+/**
+ * A controller class that behaves as an interface that links the model and view.
+ * @author Samuel Asher Kappala
+ * @author Bhavya Patel
+ */
+public class MainController {
 
+    //variables that are used in the view
     @FXML private TextField studentName;
     @FXML private RadioButton majorCS;
     @FXML private RadioButton majorEE;
@@ -49,6 +55,11 @@ public class Controller {
     private ToggleGroup studyAbroadToggleGroup = new ToggleGroup();
     public static Roster roster = new Roster();
 
+    /**
+     * This method initialized the GUI as soon as it starts running.
+     * It sets the toggle groups for the radio buttons.
+     * Add button is selected by default.
+     */
     @FXML
     protected void initialize(){
 
@@ -78,12 +89,13 @@ public class Controller {
         studyAbroadNo.setToggleGroup(studyAbroadToggleGroup);
 
         addStudentButton.setSelected(true);
-//        output.setText("");
-//        printOutput.setText("");
         onClickAddStudent();
 
     }
 
+    /**
+     * This method describes what happens when the "Add Student" button is clicked
+     */
     @FXML
     private void onClickAddStudent(){
 
@@ -106,6 +118,7 @@ public class Controller {
         triStateButton.setSelected(false);
         actionInputLabel.setDisable(false);
         actionInput.setDisable(false);
+        actionInput.setText("");
         dateTextField.setText("");
         dateLabel.setDisable(true);
         dateTextField.setDisable(true);
@@ -116,11 +129,17 @@ public class Controller {
 
     }
 
+    /**
+     * This method describes what happens when the "Non-Resident" button is clicked
+     */
     @FXML
     private void onClickNonResident(){
         nonResidentHBox.setDisable(false);
     }
 
+    /**
+     * This method describes what happens when the "Tri-State" button is clicked
+     */
     @FXML
     private void onClickTriState(){
         triStatePane.setDisable(false);
@@ -129,6 +148,9 @@ public class Controller {
         studyAbroadYes.setSelected(false);
     }
 
+    /**
+     * This method describes what happens when the "International" button is clicked
+     */
     @FXML
     private void onClickInternation(){
         studyAbroadPane.setDisable(false);
@@ -137,6 +159,9 @@ public class Controller {
         connecticutButton.setSelected(false);
     }
 
+    /**
+     * This method describes what happens when the "Remove Student" button is clicked
+     */
     @FXML
     private void onClickRemoveStudent(){
         onClickAddStudent();
@@ -149,6 +174,9 @@ public class Controller {
 
     }
 
+    /**
+     * This method describes what happens when the "Set Study Abroad" button is clicked
+     */
     @FXML
     private void onClickSetStudyAbroad(){
         nonResidentButton.setSelected(true);
@@ -162,6 +190,9 @@ public class Controller {
         actionButton.setText("Set Study Abroad Status");
     }
 
+    /**
+     * This method describes what happens when the "Resident" button is clicked
+     */
     @FXML
     private void onClickResident(){
         studentTypeHbox.setDisable(false);
@@ -180,16 +211,23 @@ public class Controller {
         actionInputLabel.setText("Number of credits:  *");
     }
 
+    /**
+     * This method describes what happens when the "Set Financial Aid" button is clicked
+     */
     @FXML
     private void onClickFinancialAid(){
         onClickAddStudent();
         studentTypeHbox.setDisable(true);
+        actionInput.setText("");
         actionInputLabel.setText("Enter Financial Aid Amount");
         actionInput.setPromptText("$0.00");
         actionButton.setText("Update Financial Aid");
 
     }
 
+    /**
+     * This method describes what happens when the "Pay Tuition" button is clicked
+     */
     @FXML
     private void onClickPayTuition(){
         onClickAddStudent();
@@ -202,6 +240,9 @@ public class Controller {
         dateTextField.setPromptText("MM/DD/YYYY");
     }
 
+    /**
+     * This method describes what happens when the "Calculate Student Tuition" button is clicked
+     */
     @FXML
     private void onClickCalculateStudentTuition(){
 
@@ -213,44 +254,43 @@ public class Controller {
 
     }
 
+    /**
+     * This method calls any of the following methods: addStudent(), removeStudent()
+     * setStudyAbroad(), setFinancialAid(), payTuition(), calculateStudentTuition()
+     * based  on the action selected to perform
+     */
     @FXML
     private void onClickActionButton(){
 
         if(studentName.getText().isBlank()){
-            outputString = outputString + "Please enter a valid name\n";
+            outputString = outputString + "Please enter a valid name.\n";
             output.setText(outputString);
+            output.setScrollTop(Double.MAX_VALUE);
+            return;
         }
         else if (majorToggleGroup.getSelectedToggle() == null){
-            outputString = outputString + "Please select a major\n";
+            outputString = outputString + "Please select a major.\n";
             output.setText(outputString);
+            output.setScrollTop(Double.MAX_VALUE);
+            return;
+
         }
 
         switch (actionButton.getText()) {
-
-            case "Add Student":
-                addStudent();
-                break;
-            case "Remove Student":
-                removeStudent();
-                break;
-            case "Set Study Abroad Status":
-                setStudyAbroad();
-                break;
-            case "Set Financial Aid":
-                setFinancialAid();
-                break;
-            case "Pay Tuition":
-                payTuition();
-                break;
-            case "Calculate Tuition":
-                calculateStudentTuitionDue();
-                break;
-
+            case "Add Student" -> addStudent();
+            case "Remove Student" -> removeStudent();
+            case "Set Study Abroad Status" -> setStudyAbroad();
+            case "Update Financial Aid" -> setFinancialAid();
+            case "Pay Tuition" -> payTuition();
+            case "Calculate Tuition" -> calculateStudentTuitionDue();
         }
 
+        output.setScrollTop(Double.MAX_VALUE);
     }
 
-
+    /**
+     * This method takes in the input parameters and passes them to the roster class to add the student
+     */
     private void addStudent(){
 
         try {
@@ -275,9 +315,8 @@ public class Controller {
             String majorString = majorRadio.getText();
             Major major = getMajor(majorString);
             if(studentType.getSelectedToggle() == null){
-                outputString = outputString.concat("Select a student type\n");
+                outputString = outputString.concat("Select a student type.\n");
                 output.setText(outputString);
-                return;
             }
             else if (residentButton.isSelected()) {
 
@@ -285,20 +324,17 @@ public class Controller {
 
                 if (roster.add(newStudent)) {
                     outputString = outputString.concat("Student added.\n");
-                    output.setText(outputString);
-                    return;
                 }
                 else {
                     outputString = outputString.concat("Student is already in the roster.\n");
-                    output.setText(outputString);
-                    return;
                 }
+                output.setText(outputString);
 
             } else if (nonResidentButton.isSelected()) {
 
                 if(triStateButton.isSelected()){
                     if(triStateToggleGroup.getSelectedToggle() == null){
-                        outputString = outputString.concat("Please select a state\n");
+                        outputString = outputString.concat("Please select a state.\n");
                         output.setText(outputString);
                         return;
                     }
@@ -308,68 +344,58 @@ public class Controller {
 
                     if (roster.add(newStudent)) {
                         outputString = outputString.concat("Student added.\n");
-                        output.setText(outputString);
-                        return;
                     }
                     else {
                         outputString = outputString.concat("Student is already in the roster.\n");
-                        output.setText(outputString);
-                        return;
                     }
+                    output.setText(outputString);
 
                 }
                 else if(internationalButton.isSelected()){
                     if(credits < 12) {
-                        outputString = outputString.concat("International students must enroll at least 12 credits.\n");
+                        outputString = outputString.concat("International students must enroll in at least 12 credits.\n");
                         output.setText(outputString);
                         return;
                     }
                     else if(studyAbroadToggleGroup.getSelectedToggle() == null){
-                        outputString = outputString.concat("Select a study Abroad Status\n");
+                        outputString = outputString.concat("Select a study Abroad Status.\n");
                         output.setText(outputString);
                         return;
                     }
-                    Boolean isStudyAbroad = false;
-                    if(studyAbroadYes.isSelected()){
-                        isStudyAbroad = true;
-                    }
+                    boolean isStudyAbroad = studyAbroadYes.isSelected();
 
                     International newStudent = new International(newStudentName, major, credits, isStudyAbroad);
                     if (roster.add(newStudent)) {
                         outputString = outputString.concat("Student added.\n");
-                        output.setText(outputString);
-                        return;
                     }
                     else {
                         outputString = outputString.concat("Student is already in the roster.\n");
-                        output.setText(outputString);
-                        return;
                     }
+                    output.setText(outputString);
 
                 }
                 else{
                     NonResident newStudent = new NonResident(newStudentName, major, credits);
                     if (roster.add(newStudent)) {
                         outputString = outputString.concat("Student added.\n");
-                        output.setText(outputString);
-                        return;
                     }
                     else {
                         outputString = outputString.concat("Student is already in the roster.\n");
-                        output.setText(outputString);
-                        return;
                     }
+                    output.setText(outputString);
                 }
-
             }
-        } catch (Exception e){
-            System.out.println(e);
+        } catch (NumberFormatException e){
+            outputString = outputString.concat("Invalid Credit Hours.\n");
+            output.setText(outputString);
         }
     }
 
-
+    /**
+     * This method takes in the input parameters and passes them to the roster class to remove the student
+     */
     private void removeStudent(){
-        try{
+
             String removeStudentName = studentName.getText();
             RadioButton majorRadio = (RadioButton) majorToggleGroup.getSelectedToggle();
             String majorString = majorRadio.getText();
@@ -378,29 +404,27 @@ public class Controller {
 
             if(roster.remove(removeStudent)){
                 outputString = outputString.concat("Student removed from the roster.\n");
-                output.setText(outputString);
             }
             else{
                 outputString = outputString.concat("Student is not in the roster.\n");
-                output.setText(outputString);
             }
-
-        }catch(Exception e){
-            System.out.println(e);
-        }
+            output.setText(outputString);
 
     }
 
+    /**
+     * This method takes in the input parameters and passes them to the roster class to change the study abroad
+     * status of the international student
+     */
     private void setStudyAbroad(){
 
-        try{
             String internationalStudentName = studentName.getText();
             RadioButton majorRadio = (RadioButton) majorToggleGroup.getSelectedToggle();
             String majorString = majorRadio.getText();
             Major major = getMajor(majorString);
             boolean studyAbroadStatus = false;
             if(studyAbroadToggleGroup.getSelectedToggle() == null){
-                outputString = outputString.concat("Select a study abroad status\n");
+                outputString = outputString.concat("Select a study abroad status.\n");
                 output.setText(outputString);
                 return;
             }
@@ -408,31 +432,27 @@ public class Controller {
                 studyAbroadStatus = true;
             }
 
-            switch(roster.setStudyAbroadStatus(internationalStudentName, major, studyAbroadStatus)) {
-
-                case 1:
+            switch (roster.setStudyAbroadStatus(internationalStudentName, major, studyAbroadStatus)) {
+                case 1 -> {
                     outputString = outputString.concat("Status changed and tuition updated.\n");
                     output.setText(outputString);
-                    break;
-
-                case 0:
-                    outputString = outputString.concat("Enter a new status.\n");
+                }
+                case 0 -> {
+                    outputString = outputString.concat("Select a new status.\n");
                     output.setText(outputString);
-                    break;
-
-                case -1:
+                }
+                case -1 -> {
                     outputString = outputString.concat("Couldn't find the international student.\n");
                     output.setText(outputString);
-                    break;
+                }
             }
-
-
-        }catch(Exception e){
-            System.out.println(e);
-        }
 
     }
 
+    /**
+     * This method takes in the input parameters and passes them to the roster class to set the financial aid of a
+     * student
+     */
     private void setFinancialAid(){
 
         try{
@@ -443,55 +463,53 @@ public class Controller {
             Major major = getMajor(majorString);
 
             if(actionInput.getText().isBlank()){
-                outputString = outputString.concat("Enter the financial aid amount\n");
+                outputString = outputString.concat("Enter the financial aid amount.\n");
                 output.setText(outputString);
                 return;
             }
 
             double aid = Double.parseDouble(actionInput.getText());
 
-            if(aid < 0 || aid > 10000) {
+            if(aid <= 0 || aid > 10000) {
                 outputString = outputString.concat("Invalid Amount.\n");
                 output.setText(outputString);
                 return;
             }
 
-            switch(roster.calculateFinancialAid(name, major, aid)) {
-
-                case 2:
-                    outputString = outputString.concat("Tuition Updated.\n");
+            switch (roster.calculateFinancialAid(name, major, aid)) {
+                case 2 -> {
+                    outputString = outputString.concat("Financial aid awarded. Tuition updated.\n");
                     output.setText(outputString);
-                    break;
-
-                case 1:
+                }
+                case 1 -> {
                     outputString = outputString.concat("Awarded once already.\n");
                     output.setText(outputString);
-                    break;
-
-                case 0:
+                }
+                case 0 -> {
                     outputString = outputString.concat("Parttime student doesn't qualify for the award.\n");
                     output.setText(outputString);
-                    break;
-
-                case -1:
+                }
+                case -1 -> {
                     outputString = outputString.concat("Not a resident student.\n");
                     output.setText(outputString);
-                    break;
-
-                case -2:
+                }
+                case -2 -> {
                     outputString = outputString.concat("Student not in the roster.\n");
                     output.setText(outputString);
-                    break;
+                }
             }
 
 
-        }catch (Exception e){
-            System.out.println(e);
+        }catch (NumberFormatException e){
+            outputString = outputString.concat("Invalid Amount.\n");
+            output.setText(outputString);
         }
-
 
     }
 
+    /**
+     * This method takes in the input parameters and passes them to the roster class to update the tuition of the student
+     */
     private void payTuition(){
 
         try{
@@ -500,12 +518,12 @@ public class Controller {
             String majorString = majorRadio.getText();
             Major major = getMajor(majorString);
             if(actionInput.getText().isBlank()){
-                outputString = outputString.concat("Enter the payment amount\n");
+                outputString = outputString.concat("Enter the payment amount.\n");
                 output.setText(outputString);
                 return;
             }
             else if(dateTextField.getText().isBlank()){
-                outputString = outputString.concat("Enter the payment date\n");
+                outputString = outputString.concat("Enter the payment date.\n");
                 output.setText(outputString);
                 return;
             }
@@ -519,34 +537,37 @@ public class Controller {
                 return;
             }
 
-            switch(roster.payTuition(name, major, fees, paymentDate)) {
-
-                case 1:
+            switch (roster.payTuition(name, major, fees, paymentDate)) {
+                case 1 -> {
                     outputString = outputString.concat("Amount is greater than amount due.\n");
                     output.setText(outputString);
-                    break;
-
-                case 0:
+                }
+                case 0 -> {
                     outputString = outputString.concat("Payment applied.\n");
                     output.setText(outputString);
-                    break;
-
-                case -1:
+                }
+                case -1 -> {
                     outputString = outputString.concat("Student does not exist in the roster.\n");
                     output.setText(outputString);
-                    break;
+                }
             }
 
-        }catch(Exception e){
-            System.out.println(e);
+        }catch(NumberFormatException e){
+            outputString = outputString.concat("Invalid format for Payment amount/date.\n");
+            output.setText(outputString);
+        }catch(NoSuchElementException e){
+            outputString = outputString.concat("Enter a valid date.\n");
+            output.setText(outputString);
         }
-
 
     }
 
-
+    /**
+     * This method takes in the input parameters and passes them to the roster class to calculate the tuition due of
+     * the student
+     */
     private void calculateStudentTuitionDue(){
-        try{
+
             String name = studentName.getText();
             RadioButton majorRadio = (RadioButton) majorToggleGroup.getSelectedToggle();
             String majorString = majorRadio.getText();
@@ -556,73 +577,66 @@ public class Controller {
 
             if(roster.calculateStudentTuition(student)){
                 outputString = outputString.concat("Tuition calculated.\n");
-                output.setText(outputString);
             }
             else{
                 outputString = outputString.concat("Student doesnt exist in the roster.\n");
-                output.setText(outputString);
             }
-
-        }catch(Exception e){
-            System.out.println(e);
-        }
+            output.setText(outputString);
 
     }
 
 
-
-
-
     /**
-     * A method that converts a string to a Major Object
+     * A method that converts a string to a Major Object and returns that object
      * @param majorString
      * @return major
      */
     private Major getMajor(String majorString) {
 
-        Major major = null;
-
-        if(majorString.equals("CS")) major = Major.CS;
-
-        else if(majorString.equals("IT")) major = Major.IT;
-
-        else if(majorString.equals("BA")) major = Major.BA;
-
-        else if(majorString.equals("EE")) major = Major.EE;
-
-        else if(majorString.equals("ME")) major = Major.ME;
-
-        return major;
-
+        return switch (majorString) {
+            case "CS" -> Major.CS;
+            case "IT" -> Major.IT;
+            case "BA" -> Major.BA;
+            case "EE" -> Major.EE;
+            case "ME" -> Major.ME;
+            default -> null;
+        };
     }
 
+    /**
+     * This method calculates the tuition of all the studnets in the roster
+     */
     @FXML
     private void onClickCalculateTuition(){
         roster.calculateTuition();
         printString = printString.concat("Tuition Calculated.\n");
         printOutput.setText(printString);
-        return;
     }
 
+    /**
+     * This method prints the students in the roster
+     */
     @FXML
     private void onClickPrint(){
         roster.print();
         printOutput.setText(printString);
-        return;
-
     }
 
+    /**
+     * This method prints the students who made a payment at least once; the output is ordered by payment date
+     */
     @FXML
     private void onClickPrintByPaymentDate(){
         roster.printByPaymentDate();
         printOutput.setText(printString);
-        return;
     }
 
+    /**
+     * This method prints the roster; ordered by student name
+     */
     @FXML
     private void onClickPrintByStudentName(){
         roster.printByStudentName();
         printOutput.setText(printString);
-        return;
     }
 }

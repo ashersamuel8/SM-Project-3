@@ -39,10 +39,11 @@ public class Date implements Comparable<Date> {
 	public Date(String date) {
 		StringTokenizer buffer = new StringTokenizer(date, "/");
 
-		// month should internally be stored as one less than what was entered because of the way Calendar class is set up
-		this.month = Integer.parseInt(buffer.nextToken()) - ALIGN_MONTHS;;
-		this.day = Integer.parseInt(buffer.nextToken());
-		this.year = Integer.parseInt(buffer.nextToken());
+			// month should internally be stored as one less than what was entered because of the way Calendar class is set up
+			this.month = Integer.parseInt(buffer.nextToken()) - ALIGN_MONTHS;
+			this.day = Integer.parseInt(buffer.nextToken());
+			this.year = Integer.parseInt(buffer.nextToken());
+
 	}
 	/**
 	 * returns month

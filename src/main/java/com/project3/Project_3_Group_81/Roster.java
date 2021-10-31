@@ -1,7 +1,5 @@
 package com.project3.Project_3_Group_81;
 
-import java.util.ResourceBundle;
-
 /**
  * This class performs actions like add, remove, printing, setting study abroad status, and calculating tuition & financial aid
  * on the roster.
@@ -108,21 +106,21 @@ public class Roster {
 	public void print() {	
 		
 		if (rosterList[0] == null ) {
-			Controller.printString = Controller.printString + "Roster is empty.\n";
+			MainController.printString = MainController.printString + "Roster is empty.\n";
 			return;
 		}
 		
-		Controller.printString = Controller.printString.concat("* List of students in the roster **\n");
+		MainController.printString = MainController.printString.concat("* List of students in the roster **\n");
 		
 		for(int i = 0; i < rosterList.length; i++) {
 			
 			if (rosterList[i] == null) break;
 			
-			Controller.printString = Controller.printString.concat(rosterList[i].toString() + "\n");
+			MainController.printString = MainController.printString.concat(rosterList[i].toString() + "\n");
 			
 		}	
 		
-		Controller.printString = Controller.printString.concat("* End of roster **\n");
+		MainController.printString = MainController.printString.concat("* End of roster **\n");
 		return;
 		
 	}
@@ -133,7 +131,7 @@ public class Roster {
 	public void printByStudentName() {
 		
 		if (rosterList[0] == null ) {
-			Controller.printString = Controller.printString + "Roster is empty.\n";
+			MainController.printString = MainController.printString + "Roster is empty.\n";
 			return;
 		}
 		
@@ -155,18 +153,18 @@ public class Roster {
 		    }
 		}
 
-		Controller.printString = Controller.printString.concat("* List of students ordered by student name **\n");
+		MainController.printString = MainController.printString.concat("* List of students ordered by student name **\n");
 		
 		
 		for (int i = 0; i < rosterList.length; i++) {
 			
 			if (rosterList[i] == null) break;
 
-			Controller.printString = Controller.printString.concat(rosterList[i].toString() + "\n");
+			MainController.printString = MainController.printString.concat(rosterList[i].toString() + "\n");
 			
 		}
 
-		Controller.printString = Controller.printString.concat("* End of roster **\n");
+		MainController.printString = MainController.printString.concat("* End of roster **\n");
 		return;
 		
 	}
@@ -178,11 +176,11 @@ public class Roster {
 	public void printByPaymentDate() {
 		
 		if (rosterList[0] == null ) {
-			Controller.printString = Controller.printString + "Roster is empty.\n";
+			MainController.printString = MainController.printString + "Roster is empty.\n";
 			return;
 		}
 
-		Controller.printString = Controller.printString.concat("* List of students ordered by payment date **\n");
+		MainController.printString = MainController.printString.concat("* List of students ordered by payment date **\n");
 		
 		//Creating a temporary array list to store data of students who made at least one payment
 		Student[] tempRosterList = new Student[rosterList.length];
@@ -218,18 +216,16 @@ public class Roster {
 		        	tempRosterList[j+1] = temp;
 		      	
 		       }
-		    
 		    }
-		    
 		}
 		
 		for (int i = 0; i < tempRosterList.length; i++) {
 			
 			if (tempRosterList[i] == null) break;
-			Controller.printString = Controller.printString.concat(tempRosterList[i].toString() + "\n");
+			MainController.printString = MainController.printString.concat(tempRosterList[i].toString() + "\n");
 		}
 
-		Controller.printString = Controller.printString.concat("* End of roster **\n");
+		MainController.printString = MainController.printString.concat("* End of roster **\n");
 		return;
 		
 	}
@@ -282,8 +278,7 @@ public class Roster {
 				rosterList[index].setPaymentDate(paymentDate);
 				rosterList[index].setTuition(rosterList[index].getTuition() - fees);
 				return 0;		
-			}	
-			
+			}
 		}
 		return -1;
 	}
@@ -325,7 +320,6 @@ public class Roster {
 			}
 		}
 		return -1;
-		
 	}
 	
 	/**
@@ -362,15 +356,10 @@ public class Roster {
 					}
 					return 1;
 				}
-				
 			}
-			
 			return -1;
-	
 		}
-		
 		return -2;
-		
 	}
 	
 	public Roster(){
