@@ -232,16 +232,17 @@ public class Roster {
 	
 	/**
 	 * A method to calculate the tuition of all the students in the roster list
+	 * @return false if roster is empty
+	 * @return true if tuition is calculated
 	 */
-	public void calculateTuition() {
+	public boolean calculateTuition() {
 		
 		for( int i = 0; i < rosterList.length; i++ ) {
 			
-			if (rosterList[i] == null) break;
-			
+			if (rosterList[i] == null) return false;
 			rosterList[i].tuitionDue();
-			
 		}
+		return true;
 	}
 
 	public boolean calculateStudentTuition(Student student){

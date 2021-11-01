@@ -364,6 +364,12 @@ public class MainController {
                     }
                     boolean isStudyAbroad = studyAbroadYes.isSelected();
 
+                    if(isStudyAbroad && credits > 12){
+                        outputString = outputString.concat("International students with study abroad must enroll in 12 credits.\n");
+                        output.setText(outputString);
+                        return;
+                    }
+
                     International newStudent = new International(newStudentName, major, credits, isStudyAbroad);
                     if (roster.add(newStudent)) {
                         outputString = outputString.concat("Student added.\n");
@@ -531,7 +537,12 @@ public class MainController {
             double fees = Double.parseDouble(actionInput.getText());
             Date paymentDate = new Date(dateTextField.getText());
 
-            if(!paymentDate.isValid()) {
+            if(fees < 0){
+                outputString = outputString.concat("Payment amount cannot be negative.\n");
+                output.setText(outputString);
+                return;
+            }
+            else if(!paymentDate.isValid()) {
                 outputString = outputString.concat("Payment date invalid.\n");
                 output.setText(outputString);
                 return;
@@ -608,8 +619,12 @@ public class MainController {
      */
     @FXML
     private void onClickCalculateTuition(){
-        roster.calculateTuition();
-        printString = printString.concat("Tuition Calculated.\n");
+        if(roster.calculateTuition()) {
+            printString = printString.concat("Tuition Calculated.\n");
+        }
+        else{
+            printString = printString.concat("Roster is empty.\n");
+        }
         printOutput.setText(printString);
     }
 
