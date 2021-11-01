@@ -236,10 +236,13 @@ public class Roster {
 	 * @return true if tuition is calculated
 	 */
 	public boolean calculateTuition() {
-		
+
+		if (rosterList[0] == null) return false;
+
 		for( int i = 0; i < rosterList.length; i++ ) {
 			
-			if (rosterList[i] == null) return false;
+			if (rosterList[i] == null) break;
+
 			rosterList[i].tuitionDue();
 		}
 		return true;

@@ -41,10 +41,10 @@ public class MainController {
     @FXML private AnchorPane triStatePane;
     @FXML private AnchorPane studyAbroadPane;
     @FXML private HBox studentTypeHbox;
-    @FXML private TextArea output;
+    @FXML private TextArea output;                      //output in roster controls tab
     @FXML private Label dateLabel;
     @FXML private TextField dateTextField;
-    @FXML private TextArea printOutput;
+    @FXML private TextArea printOutput;                 //output in calculate/print tab
     private String outputString = "";
     protected static String printString = "";
     private ToggleGroup majorToggleGroup = new ToggleGroup();
@@ -170,7 +170,6 @@ public class MainController {
         actionInputLabel.setDisable(true);
         actionInput.setDisable(true);
         actionButton.setText("Remove Student");
-
 
     }
 
@@ -329,8 +328,8 @@ public class MainController {
                     outputString = outputString.concat("Student is already in the roster.\n");
                 }
                 output.setText(outputString);
-
-            } else if (nonResidentButton.isSelected()) {
+            }
+            else if (nonResidentButton.isSelected()) {
 
                 if(triStateButton.isSelected()){
                     if(triStateToggleGroup.getSelectedToggle() == null){
@@ -619,6 +618,7 @@ public class MainController {
      */
     @FXML
     private void onClickCalculateTuition(){
+
         if(roster.calculateTuition()) {
             printString = printString.concat("Tuition Calculated.\n");
         }
@@ -626,6 +626,7 @@ public class MainController {
             printString = printString.concat("Roster is empty.\n");
         }
         printOutput.setText(printString);
+        printOutput.setScrollTop(Double.MAX_VALUE);
     }
 
     /**
@@ -635,6 +636,7 @@ public class MainController {
     private void onClickPrint(){
         roster.print();
         printOutput.setText(printString);
+        printOutput.setScrollTop(Double.MAX_VALUE);
     }
 
     /**
@@ -644,6 +646,7 @@ public class MainController {
     private void onClickPrintByPaymentDate(){
         roster.printByPaymentDate();
         printOutput.setText(printString);
+        printOutput.setScrollTop(Double.MAX_VALUE);
     }
 
     /**
@@ -653,5 +656,6 @@ public class MainController {
     private void onClickPrintByStudentName(){
         roster.printByStudentName();
         printOutput.setText(printString);
+        printOutput.setScrollTop(Double.MAX_VALUE);
     }
 }
