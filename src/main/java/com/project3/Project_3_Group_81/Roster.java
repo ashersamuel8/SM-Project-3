@@ -242,17 +242,26 @@ public class Roster {
 		for( int i = 0; i < rosterList.length; i++ ) {
 			
 			if (rosterList[i] == null) break;
-
-			rosterList[i].tuitionDue();
+			if(rosterList[i].getTotalPayment() == 0) {
+				rosterList[i].tuitionDue();
+			}
 		}
 		return true;
 	}
 
+	/**
+	 * A method that calculates the tuition of a given student
+	 * @param student
+	 * @return false if student doesnt exist
+	 * @return true if tuition is calculated
+	 */
 	public boolean calculateStudentTuition(Student student){
 		int exists = find(student);
 
 		if (exists != -1) {
-			rosterList[exists].tuitionDue();
+			if(rosterList[exists].getTotalPayment() == 0) {
+				rosterList[exists].tuitionDue();
+			}
 			return true;
 		}
 		return false;
