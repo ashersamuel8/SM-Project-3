@@ -30,10 +30,10 @@ public class TriState extends NonResident {
 		
 		if(super.getNumberOfCredits() >= 12) {
 			switch(state) {
-				case "NY":	
+				case "New York":
 					this.setTuition(getTuition()-4000);
 					break;
-				case "CT":
+				case "Connecticut":
 					this.setTuition(getTuition()-5000);
 					break;
 			}
